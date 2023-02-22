@@ -8,9 +8,15 @@
 }
 
 h1 {
-    margin: 0 0 40px;
-    font-size: 32px;
+    font-size: 300%;
+    font-weight: bold;
     text-align: center;
+    background: linear-gradient(to right, #3CB371, #228B22, #008000);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 20px 0;
+    animation: color-change 3s infinite;
 }
 
 .dropzone p {
@@ -59,10 +65,7 @@ input[type="file"] {
 }
 
 .add-image-btn {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
+    display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -82,4 +85,49 @@ input[type="file"] {
 .button-container {
     margin-bottom: 20px;
     text-align: center;
+}
+
+.predictions {
+    background-color: #3ba43f;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 1em;
+    border-radius: 1em;
+    position: absolute;
+    top: 55%;
+    right: 25%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.predictions table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.predictions th,
+.predictions td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid white;
+}
+
+.predictions th {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.predictions td {
+    font-size: 1.1rem;
+    color: #d9ffd9;
+}
+
+.loading-animation-container {
+    position: absolute;
+    top: 45%;
+    right: 25%;
 }

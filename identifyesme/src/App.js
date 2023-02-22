@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import { css } from "@emotion/react";
+import ClipLoader from "react-spinners/ClipLoader";
+
+
+
 
 function sendImageToApi(imageFile) {
     const apiUrl = "https://northeurope.api.cognitive.microsoft.com/customvision/v3.0/Prediction/2448c95e-5c9f-4cd8-8f74-7d39ad438349/detect/iterations/Iteration2/image";
@@ -29,6 +34,8 @@ function sendImageToApi(imageFile) {
 function App() {
     const [image, setImage] = useState(null);
     const [predictions, setPredictions] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const handleDrop = (e) => {
         e.preventDefault();
@@ -52,15 +59,19 @@ function App() {
 
     const handleSubmit = () => {
         if (image) {
+            setIsLoading(true);
+            setPredictions([]);
             sendImageToApi(image)
                 .then((response) => {
-                    console.log(response.data);
+                    setPredictions(response.data.predictions);
                 })
                 .catch((error) => {
                     console.error(error);
-                });
+                })
+                .finally(() => setIsLoading(false));
         }
     };
+
 
     return ( <
             div className = "App" >
@@ -104,15 +115,45 @@ function App() {
             onClick = { handleSubmit } >
             Submit <
             /button> {
-            predictions.length > 0 && ( <
-                div className = "predictions" > {
-                    predictions.map((prediction) => ( <
-                        p key = { prediction.tagName } > { prediction.tagName }: { prediction.probability } <
-                        /p>
+            isLoading ? ( <
+                div className = "loading-animation-container" >
+                <
+                ClipLoader color = { "#36D7B7" }
+                loading = { isLoading }
+
+                size = { 150 }
+                /> < /
+                div >
+            ) : null
+        } {
+            predictions.length > 0 ? ( <
+                div className = "predictions" >
+                <
+                table >
+                <
+                thead >
+                <
+                tr >
+                <
+                th > Logo < /th> <
+                th > Probability < /th> < /
+                tr > <
+                /thead> <
+                tbody > {
+                    predictions.slice(0, 3).map((prediction) => ( <
+                        tr key = { prediction.tagId } >
+                        <
+                        td > { prediction.tagName.charAt(0).toUpperCase() + prediction.tagName.slice(1) } < /td> <
+                        td > {
+                            (prediction.probability * 100).toFixed(2)
+                        } % < /td> < /
+                        tr >
                     ))
                 } <
+                /tbody> < /
+                table > <
                 /div>
-            )
+            ) : null
         } <
         /div>
 );
