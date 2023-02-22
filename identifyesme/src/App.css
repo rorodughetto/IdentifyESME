@@ -53,12 +53,11 @@ input[type="file"] {
 }
 
 .dropzone {
-    position: relative;
-    width: 300px;
+    flex: 1;
     height: 300px;
     border: 2px dashed #ccc;
     border-radius: 4px;
-    margin: 20px auto;
+    margin-right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,18 +87,17 @@ input[type="file"] {
 }
 
 .predictions {
+    flex: 1;
     background-color: #3ba43f;
     color: white;
     font-size: 1.5em;
     font-weight: bold;
     padding: 1em;
     border-radius: 1em;
-    position: absolute;
-    top: 55%;
-    right: 25%;
-    transform: translateY(-50%);
+}
+
+.container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -127,7 +125,6 @@ input[type="file"] {
 }
 
 .loading-animation-container {
-    position: absolute;
-    top: 45%;
+    top: 50%;
     right: 25%;
 }

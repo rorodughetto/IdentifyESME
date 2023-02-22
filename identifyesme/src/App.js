@@ -74,56 +74,51 @@ function App() {
 
 
     return ( <
-            div className = "App" >
-            <
-            h1 > Drag & Drop or Upload Image < /h1> <
-            div className = "button-container" >
-            <
-            button className = "add-image-btn"
-            onClick = {
-                () => document.getElementById("fileInput").click()
-            } >
-            Add Image <
-            /button> < /
-            div > <
-            input id = "fileInput"
-            type = "file"
-            accept = "image/*"
-            onChange = { handleUpload }
-            /> <
-            div className = "dropzone"
-            onDragOver = {
-                (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
+        div className = "App" >
+        <
+        h1 > Drag & Drop or Upload Image < /h1> <
+        div className = "button-container" >
+        <
+        button className = "add-image-btn"
+        onClick = {
+            () => document.getElementById("fileInput").click() } >
+        Add Image <
+        /button> <
+        /div> <
+        input id = "fileInput"
+        type = "file"
+        accept = "image/*"
+        onChange = { handleUpload }
+        /> <
+        div className = "container" >
+        <
+        div className = "dropzone"
+        onDragOver = {
+            (e) => {
+                e.preventDefault();
+                e.stopPropagation();
             }
-            onDrop = { handleDrop } > {
-                image ? ( <
-                    img src = { image }
-                    alt = "uploaded"
-                    style = {
-                        { maxWidth: "100%" }
-                    }
-                    />
-                ) : ( <
-                    p > Drop image here or click to upload < /p>
-                )
-            } <
-            /div> <
-            button className = "submit-btn"
-            onClick = { handleSubmit } >
-            Submit <
-            /button> {
+        }
+        onDrop = { handleDrop } > {
+            image ? ( <
+                img src = { image }
+                alt = "uploaded"
+                style = {
+                    { maxWidth: "100%" } }
+                />
+            ) : ( <
+                p > Drop image here or click to upload < /p>
+            )
+        } <
+        /div> {
             isLoading ? ( <
                 div className = "loading-animation-container" >
                 <
                 ClipLoader color = { "#36D7B7" }
                 loading = { isLoading }
-
                 size = { 150 }
-                /> < /
-                div >
+                /> <
+                /div>
             ) : null
         } {
             predictions.length > 0 ? ( <
@@ -136,8 +131,8 @@ function App() {
                 tr >
                 <
                 th > Logo < /th> <
-                th > Probability < /th> < /
-                tr > <
+                th > Probability < /th> <
+                /tr> <
                 /thead> <
                 tbody > {
                     predictions.slice(0, 3).map((prediction) => ( <
@@ -145,18 +140,21 @@ function App() {
                         <
                         td > { prediction.tagName.charAt(0).toUpperCase() + prediction.tagName.slice(1) } < /td> <
                         td > {
-                            (prediction.probability * 100).toFixed(2)
-                        } % < /td> < /
-                        tr >
+                            (prediction.probability * 100).toFixed(2) } % < /td> <
+                        /tr>
                     ))
                 } <
-                /tbody> < /
-                table > <
+                /tbody> <
+                /table> <
                 /div>
             ) : null
         } <
+        /div> <
+        button className = "submit-btn"
+        onClick = { handleSubmit } >
+        Submit <
+        /button> <
         /div>
-);
+    );
 }
-
 export default App;
