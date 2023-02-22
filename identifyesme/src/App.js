@@ -60,14 +60,18 @@ function App() {
             div className = "App" >
             <
             h1 > Drag & Drop or Upload Image < /h1> <
-            div className = "button-container" >
-            <
-            input type = "file"
+            div className = "button-container" > < button className = "add-image-btn"
+            onClick = {
+                () => document.getElementById("fileInput").click()
+            } >
+            Add Image <
+            /button> < /
+            div > <
+            input id = "fileInput"
+            type = "file"
             accept = "image/*"
             onChange = { handleUpload }
-            /> <
-            button onClick = { handleSubmit } > Submit < /button> < /
-            div > <
+            />   <
             div className = "dropzone"
             onDragOver = {
                 (e) => {
@@ -83,7 +87,9 @@ function App() {
                     p > Drop image here or click to upload < /p>
                 )
             } <
-            /div> {
+            /div><
+            button className = "submit-btn"
+            onClick = { handleSubmit } > Submit < /button>  {
             predictions.length > 0 && ( <
                 div className = "predictions" > {
                     predictions.map((prediction) => ( <
