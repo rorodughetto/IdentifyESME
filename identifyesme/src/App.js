@@ -4,6 +4,8 @@ import "./App.css";
 function App() {
     const [image, setImage] = useState(null);
 
+
+
     const handleDrop = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -27,15 +29,17 @@ function App() {
     return ( <
         div className = "App" >
         <
-        h1 > Drag & Drop or Upload Image < /h1> <
-        div className = "dropzone"
-        onDragOver = {
-            (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        }
-        onDrop = { handleDrop } > {
+        h1 > Identify ESME < /h1> <
+        div className = "button-container" >
+        <
+        button className = "add-image-btn"
+        onClick = {
+            () => document.getElementById("fileInput").click()
+        } >
+        Add Image <
+        /button> < /
+        div > <
+        div className = "dropzone" > {
             image ? ( <
                 img src = { image }
                 alt = "uploaded" / >
@@ -44,12 +48,16 @@ function App() {
             )
         } <
         /div> <
-        input type = "file"
+        input id = "fileInput"
+        type = "file"
         accept = "image/*"
         onChange = { handleUpload }
-        /> < /
-        div >
+        /> <
+        button className = "submit-btn" > Submit < /button> </div >
     );
+
+
+
 }
 
 export default App;
