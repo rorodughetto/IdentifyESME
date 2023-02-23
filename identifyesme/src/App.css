@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     height: 100vh;
     width: 100%;
     background-color: #f2f2f2;
@@ -18,6 +19,7 @@ h1 {
     -webkit-text-fill-color: transparent;
     margin: 20px 0;
     animation: color-change 3s infinite;
+    margin-top: 50px;
 }
 
 .dropzone p {
@@ -47,6 +49,7 @@ input[type="file"] {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
+    text-align: center;
 }
 
 .submit-btn:hover {
@@ -64,7 +67,6 @@ input[type="file"] {
 }
 
 .add-image-btn {
-    display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -86,13 +88,21 @@ input[type="file"] {
     text-align: center;
 }
 
+.button-submit-container {
+
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .predictions {
     background-color: #3ba43f;
     color: white;
     font-size: 1.5em;
     font-weight: bold;
-    padding: 1em;
+    padding: 3%;
     border-radius: 1em;
+    text-align: center;
+
 }
 
 .container {
@@ -126,4 +136,54 @@ input[type="file"] {
 .loading-animation-container {
     top: 50%;
     right: 25%;
+}
+
+.understood-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+.understood-btn:hover {
+    background-color: #388e3c;
+}
+
+.typewriter {
+    text-align: justify;
+    color: #6d6c6c;
+    font-size: 110%;
+}
+
+.understood-container {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+    width: 550px;
+
+}
+
+.container-footer {
+     margin-top: 10px;
+  position: flex;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #bbb;
+
+  text-align: center;
+  padding: 20px;
+}
+
+body{
+      color: #bbb;
 }
