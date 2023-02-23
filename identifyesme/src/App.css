@@ -3,8 +3,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     height: 100vh;
-    background-color: #f2f2f2;
+
 }
 
 h1 {
@@ -17,6 +18,7 @@ h1 {
     -webkit-text-fill-color: transparent;
     margin: 20px 0;
     animation: color-change 3s infinite;
+    margin-top: 50px;
 }
 
 .dropzone p {
@@ -87,18 +89,21 @@ input[type="file"] {
 }
 
 .button-submit-container {
-    margin-bottom: 20px;
+
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .predictions {
-    flex: 1;
+
     background-color: #3ba43f;
     color: white;
     font-size: 1.5em;
     font-weight: bold;
-    padding: 1em;
+    padding: 3%;
     border-radius: 1em;
+    text-align: center;
+
 }
 
 .container {
@@ -155,6 +160,8 @@ input[type="file"] {
 
 .typewriter {
     text-align: justify;
+    color: #6d6c6c;
+    font-size: 110%;
 }
 
 .understood-container {
@@ -162,16 +169,22 @@ input[type="file"] {
     text-align: center;
     font-size: 18px;
     line-height: 1.5;
-    width: 500px;
+    width: 550px;
+
 }
 
 .container-footer {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    justify-content: center;
-    align-items: center;
-    color: #bbb;
-    height: 100px;
-    width: 100%;
+     margin-top: 10px;
+  position: flex;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #bbb;
+
+  text-align: center;
+  padding: 20px;
+}
+
+body{
+      color: #bbb;
 }
