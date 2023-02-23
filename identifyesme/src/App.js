@@ -38,13 +38,13 @@ function App() {
 		});
 	};
 
-	const createBoundingBox = () => {
+    const createBoundingBox = () => {
 		const boundingBoxColors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'brown', 'black', 'white'];
 		const dropzone = document.getElementById('dropzone');
 		new ResizeObserver(() => {
 			removeBoundingBoxs();
-			for (let index = 0; index < predictions.length; index++) {
-				if (predictions[index].probability > 0.6) {
+            for (let index = 0; index < predictions.length; index++) {
+                if (predictions[index].probability > 0.6) {
 					const image = document.getElementById('image');
 					const imageRect = image.getBoundingClientRect();
 					const imageWidth = imageRect.width;
@@ -59,7 +59,7 @@ function App() {
 					boundingBox.style.position = 'absolute';
 					boundingBox.style.top = imageTop + predictions[index].boundingBox.top * imageHeight + 'px';
 					boundingBox.style.left = imageLeft + predictions[index].boundingBox.left * imageWidth + 'px';
-					document.body.appendChild(boundingBox);
+                    document.body.appendChild(boundingBox);
 				}
 			}
 		}).observe(dropzone);
@@ -110,9 +110,8 @@ function App() {
 	};
 
 	return (
-		<body>
-			{!isLoading && predictions.length > 0 && createBoundingBox()}
 			<div className='App'>
+			{!isLoading && predictions.length > 0 && createBoundingBox()}
 				<h1> Identify ESME </h1>
 				{isUnderstood ? (
 					<div className='body'>
@@ -123,7 +122,8 @@ function App() {
 						</div>{' '}
 						<input id='fileInput' type='file' accept='image/*' onChange={handleUpload} />{' '}
 						<div className='container'>
-							<div
+                            <div
+                                id='dropzone'
 								className='dropzone'
 								onDragOver={(e) => {
 									e.preventDefault();
@@ -132,7 +132,7 @@ function App() {
 								onDrop={handleDrop}
 							>
 								{' '}
-								{image ? <img src={image} alt='uploaded' style={{ maxWidth: '100%' }} /> : <p> Drop image here or click to upload </p>}{' '}
+								{image ? <img id='image' src={image} alt='uploaded' style={{ maxWidth: '100%' }} /> : <p> Drop image here or click to upload </p>}{' '}
 							</div>{' '}
 							{isLoading ? (
 								<div className='loading-animation-container'>
@@ -141,7 +141,7 @@ function App() {
 							) : null}{' '}
 							{predictions.length > 0 && ( // vérifie si predictions n'est pas vide
 								<div className='predictions'>
-									{predictions.some((p) => p.probability >= 0.7) ? ( // vérifie si au moins une probabilité est supérieure ou égale à 60%
+									{predictions.some((p) => p.probability >= 0.6) ? ( // vérifie si au moins une probabilité est supérieure ou égale à 60%
 										<table>
 											<thead>
 												<tr>
@@ -151,7 +151,7 @@ function App() {
 											</thead>
 											<tbody>
 												{predictions
-													.filter((p) => p.probability >= 0.7) // filtre les prédictions dont la probabilité est supérieure ou égale à 70%
+													.filter((p) => p.probability >= 0.6) // filtre les prédictions dont la probabilité est supérieure ou égale à 60%
 
 													.map((prediction) => (
 														<tr key={prediction.tagId}>
@@ -192,7 +192,6 @@ function App() {
 					<p> Application produite par Farah Dourouni, Mehdi Lallouche, Rami Moulla, Yvan Gunewou-Takam et Romain Eyquem dans le cadre du 5 days challenge à ESME Sudria </p>{' '}
 				</div>{' '}
 			</div>
-		</body>
 	);
 }
 export default App;
