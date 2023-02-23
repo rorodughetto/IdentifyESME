@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
-import { css } from "@emotion/react";
+
 import ClipLoader from "react-spinners/ClipLoader";
 
 
@@ -35,6 +35,9 @@ function App() {
     const [image, setImage] = useState(null);
     const [predictions, setPredictions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isUnderstood, setIsUnderstood] = useState(false);
+
+
 
 
     const handleDrop = (e) => {
@@ -71,20 +74,27 @@ function App() {
                 .finally(() => setIsLoading(false));
         }
     };
+    const handleUnderstood = () => {
+        setIsUnderstood(true);
+    };
 
 
     return ( <
         div className = "App" >
         <
-        h1 > Drag & Drop or Upload Image < /h1> <
+        h1 > Identify ESME < /h1> {isUnderstood ? ( <
+        div className = "body" >
+
+        <
         div className = "button-container" >
         <
         button className = "add-image-btn"
         onClick = {
-            () => document.getElementById("fileInput").click() } >
-        Add Image <
-        /button> <
-        /div> <
+            () => document.getElementById("fileInput").click()
+        } >
+        Ajouter image <
+        /button> < /
+        div > <
         input id = "fileInput"
         type = "file"
         accept = "image/*"
@@ -104,57 +114,75 @@ function App() {
                 img src = { image }
                 alt = "uploaded"
                 style = {
-                    { maxWidth: "100%" } }
+                    { maxWidth: "100%" }
+                }
                 />
             ) : ( <
                 p > Drop image here or click to upload < /p>
             )
         } <
         /div> {
-            isLoading ? ( <
-                div className = "loading-animation-container" >
-                <
-                ClipLoader color = { "#36D7B7" }
-                loading = { isLoading }
-                size = { 150 }
-                /> <
-                /div>
-            ) : null
-        } {
-            predictions.length > 0 ? ( <
-                div className = "predictions" >
-                <
-                table >
-                <
-                thead >
-                <
-                tr >
-                <
-                th > Logo < /th> <
-                th > Probability < /th> <
-                /tr> <
-                /thead> <
-                tbody > {
-                    predictions.slice(0, 3).map((prediction) => ( <
-                        tr key = { prediction.tagId } >
-                        <
-                        td > { prediction.tagName.charAt(0).toUpperCase() + prediction.tagName.slice(1) } < /td> <
-                        td > {
-                            (prediction.probability * 100).toFixed(2) } % < /td> <
-                        /tr>
-                    ))
-                } <
-                /tbody> <
-                /table> <
-                /div>
-            ) : null
-        } <
-        /div> <
+        isLoading ? ( <
+            div className = "loading-animation-container" >
+            <
+            ClipLoader color = { "#36D7B7" }
+            loading = { isLoading }
+            size = { 150 }
+            /> < /
+            div >
+        ) : null
+    } {
+        predictions.length > 0 ? ( <
+            div className = "predictions" >
+            <
+            table >
+            <
+            thead >
+            <
+            tr >
+            <
+            th > Logo < /th> <
+            th > Probability < /th> < /
+            tr > <
+            /thead> <
+            tbody > {
+                predictions.slice(0, 3).map((prediction) => ( <
+                    tr key = { prediction.tagId } >
+                    <
+                    td > { prediction.tagName.charAt(0).toUpperCase() + prediction.tagName.slice(1) } < /td> <
+                    td > {
+                        (prediction.probability * 100).toFixed(2)
+                    } % < /td> < /
+                    tr >
+                ))
+            } <
+            /tbody> < /
+            table > <
+            /div>
+        ) : null
+    } < /
+    div > <
+        div className = "button-submit-container" >
+        <
         button className = "submit-btn"
-        onClick = { handleSubmit } >
-        Submit <
-        /button> <
+    onClick = { handleSubmit } >
+        Soumettre <
+        /button> < /div > < /div > ) : (<div className="understood-container">  <
+    p class = "typewriter" > L 'interface Web que nous avons créée  permet de détecter des logos dans des images pour des entreprises comme Apple, Microsoft, Google, Nvidia et Intel grâce à une API de reconnaissance visuelle entraînée par le machine learning. Les utilisateurs peuvent facilement télécharger une image ou la faire glisser et la déposer dans la zone de dépôt prévue à cet effet. En appuyant sur le bouton de soumission, l'
+    API analyse l 'image et renvoie les prédictions de logos détectés, avec leur probabilité respective. Les résultats sont affichés à l'
+    utilisateur sous forme de tableau, avec les noms de logo et les probabilités correspondantes.L 'interface est simple à utiliser et permet une reconnaissance rapide et précise des logos recherchés.</p> <
+    button className = "understood-btn"
+    onClick = { handleUnderstood } >
+        C 'est compris < /
+    button > <
         /div>
-    );
+)
+} <
+div class = "container-footer" >
+    <
+    p > Application produite par Farah Dourouni, Mehdi Lallouche, Rami Moulla, Yvan Gunewou - Takam et Romain Eyquem dans le cadre du 5 days challenge à ESME Sudria < /p> < /
+    div > < /
+div >
+);
 }
 export default App;
